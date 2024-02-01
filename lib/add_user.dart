@@ -28,14 +28,6 @@ class _AddUserScreenState extends State<AddUserScreen> {
     final int age = int.tryParse(ageController.text) ?? 0;
     await database.insertUser(User(name:name)).then((value) =>
         Navigator.pop(context, User(id:value,name:name)));
-    // Insert into the 'users' table
-    // await widget.database.insert(
-    //   'users',
-    //   {'name': name, 'age': age},
-    //   conflictAlgorithm: ConflictAlgorithm.replace,
-    // );
-
-    // Clear text fields after insertion
     nameController.clear();
     ageController.clear();
   }
@@ -58,12 +50,6 @@ class _AddUserScreenState extends State<AddUserScreen> {
               decoration: InputDecoration(labelText: 'Name'),
             ),
             SizedBox(height: 16.0),
-            // TextField(
-            //   controller: ageController,
-            //   keyboardType: TextInputType.number,
-            //   decoration: InputDecoration(labelText: 'Age'),
-            // ),
-            // SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: addUser,
               child: Text('Save'),
